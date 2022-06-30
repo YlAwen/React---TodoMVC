@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoHeader from "./components/TodoHeader";
+import TodoMain from "./components/TodoMain";
+import TodoFooter from "./components/TodoFooter";
 
-function App() {
+import { getList } from "./store/actions/todos";
+
+import "./styles/base.css";
+import "./styles/index.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getList());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="todoapp">
+      <TodoHeader />
+      <TodoMain />
+      <TodoFooter />
+    </section>
   );
-}
+};
 
 export default App;
